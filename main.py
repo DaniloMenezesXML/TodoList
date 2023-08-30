@@ -1,5 +1,7 @@
 import sys
-from PySide6.QtWidgets import QMainWindow, QApplication, QLineEdit, QPushButton, QListWidget, QWidget, QVBoxLayout
+from PySide6.QtWidgets import QMainWindow, QApplication, QLineEdit, QPushButton, QListWidget, QWidget, QVBoxLayout, \
+    QInputDialog
+from PySide6.QtCore import Qt
 
 class AppListaTarefa(QWidget):
     def __init__(self):
@@ -32,6 +34,11 @@ class AppListaTarefa(QWidget):
                                        "border-radius: 5px;"
                                        "border: 2px solid red;")
 
+        self.btn_editar.clicked.connect(self.editar_tarefa)
+        self.btn_remover.clicked.connect(self.remover_tarefa)
+        self.btn_adicionar.clicked.connect(self.adicionar_tarefa)
+        self.btn_concluir.clicked.connect(self.concluir_tarefa)
+
         self.lst_tarefa = QListWidget()
 
         layout = QVBoxLayout()
@@ -55,7 +62,22 @@ class AppListaTarefa(QWidget):
 
         item_selecionado = self.lst_tarefa.currentItem()
         if item_selecionado:
-            item_selecionado.setFlags()
+            item_selecionado.setFlags(item_selecionado.flags() | Qt.ItemIsUserCheckable)
+            item_selecionado.setCheckState(Qt.Checked)
+
+    def remover_tarefa(self):
+        item_selecionado = self.lst_tarefa.currentItem()
+        if item_selecionado:
+            self.lst_tarefa.takeItem(self.lst_tarefa.row(item_selecionado))
+
+    def editar_tarefa(self):
+        item_selecionado = self.lst_tarefa.currentItem()
+        if item_selecionado:
+            novo_texto, ok = QInputDialog.getText(self,'Editar tarefa',
+                                                       'Editar a tarefa', text = item_selecionado.text())
+        if ok and novo_texto:
+            item_selecionado.setText(novo_texto)
+
 
 if __name__ == '__main__':
     app = QApplication()
