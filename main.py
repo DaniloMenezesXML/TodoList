@@ -44,7 +44,18 @@ class AppListaTarefa(QWidget):
 
         self.setLayout(layout)
 
+    def adicionar_tarefa(self):
 
+        tarefa = self.txt_tarefa.text()
+        if tarefa:
+            self.lst_tarefa.addItem(tarefa)
+            self.txt_tarefa.clear()
+
+    def concluir_tarefa(self):
+
+        item_selecionado = self.lst_tarefa.currentItem()
+        if item_selecionado:
+            item_selecionado.setFlags()
 
 if __name__ == '__main__':
     app = QApplication()
