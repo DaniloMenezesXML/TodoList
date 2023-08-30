@@ -14,6 +14,10 @@ class AppListaTarefa(QWidget):
         #Widgets da interface
         self.txt_tarefa = QLineEdit()
         self.btn_adicionar = QPushButton('Adicionar')
+        self.btn_adicionar.setStyleSheet("background-color: lightgreen; "
+                                         "border-radius: 5px;"
+                                         "border: 2px solid green;"
+                                         )
         self.btn_concluir = QPushButton('Concluir')
         self.btn_editar = QPushButton('Editar')
         self.btn_remover = QPushButton('Remover')
@@ -29,6 +33,8 @@ class AppListaTarefa(QWidget):
         layout.addWidget(self.lst_tarefa)
 
         self.setLayout(layout)
+
+
 
 if __name__ == '__main__':
     app = QApplication()
