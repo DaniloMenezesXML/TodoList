@@ -19,8 +19,18 @@ class AppListaTarefa(QWidget):
                                          "border: 2px solid green;"
                                          )
         self.btn_concluir = QPushButton('Concluir')
+        self.btn_concluir.setStyleSheet("background-color: lightblue;"
+                                        "border-radius: 5px;"
+                                        "border: 2px solid blue;")
         self.btn_editar = QPushButton('Editar')
+        self.btn_editar.setStyleSheet("background-color: #F1EB9C;"
+                                      "border-radius: 5px;"
+                                      "border: 2px solid orange"
+                                      )
         self.btn_remover = QPushButton('Remover')
+        self.btn_remover.setStyleSheet("background-color: #FFA8A8;"
+                                       "border-radius: 5px;"
+                                       "border: 2px solid red;")
 
         self.lst_tarefa = QListWidget()
 
